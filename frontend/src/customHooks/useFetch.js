@@ -12,6 +12,7 @@ const useFetch = (endpoint) => {
         const response = await axios(`${BASE_URL}${endpoint}`, {
           method: 'GET', headers: {
             'Content-Type': 'application/json',
+            'x-auth-token': localStorage.getItem('token') || '',
           },
         });
 
