@@ -151,9 +151,6 @@ router.post(
         { expiresIn: "7d" }
       );
 
-      // Log login attempt
-      console.log(`User ${universityEmail} logged in at ${new Date().toISOString()}`);
-
       // Respond with token and user info
       res.status(200).json({
         message: "Login successful",
@@ -172,5 +169,44 @@ router.post(
     }
   }
 );
+
+// Refresh Token Route
+router.post("/refresh-token", async (req, res) => {
+  const refreshToken = req.body.refreshToken || req.cookies.refreshToken;
+  if (!refreshToken) {
+    return res.status(401).json({ error: "Refresh token is required" });
+  }
+
+  try {
+    // Verify the refresh token
+    const decoded = jwt.verify(refreshToken, process.env.JWT_REFRESH_SECRET);
+
+    // Find the user by ID (based on the decoded token)
+    const user = await User.findById(decoded.id);
+    if (!user) {
+      return res.status(401).json({ error: "User not found" });
+    }
+
+    // Generate a new access token
+    const newAccessToken = jwt.sign(
+      {
+        id: user._id,
+        name: user.name,
+        role: user.role,
+        universityEmail: user.universityEmail,
+      },
+      process.env.JWT_SECRET,
+      { expiresIn: "1h" } // 1 hour expiration for access token
+    );
+
+    res.status(200).json({
+      message: "Access token refreshed successfully",
+      newAccessToken,
+    });
+  } catch (error) {
+    console.error("Error refreshing token:", error.message);
+    res.status(401).json({ error: "Invalid refresh token" });
+  }
+});
 
 module.exports = router;

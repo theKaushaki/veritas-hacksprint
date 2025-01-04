@@ -20,6 +20,8 @@ app.use(cors());
 app.use(express.json());
 
 const userSocketMap = {};
+const authRoutes = require("./auth"); // Relative path to auth.js
+const protectedRoutes = require("./routes/protectedRoutes"); // Protected routes
 
 app.get('/', (req, res) => {
     res.send('Hello World!');

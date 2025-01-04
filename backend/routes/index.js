@@ -1,7 +1,8 @@
 const express = require('express');
 const router = express.Router();
 const dotenv = require("dotenv");
-const authRoutes = require("./routes/auth");
+const authRoutes = require("./auth");
+const mongoose = require('mongoose');
 
 dotenv.config(); // Load environment variables from .env file
 
@@ -17,7 +18,7 @@ mongoose
   .catch((error) => console.error("MongoDB connection error:", error));
 
 // Routes
-app.use("/auth", authRoutes); // Integrate the auth.js routes
+app.use("./auth", authRoutes); // Integrate the auth.js routes
 
 // Default Route
 app.get("/", (req, res) => {
