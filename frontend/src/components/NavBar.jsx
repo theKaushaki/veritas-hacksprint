@@ -1,33 +1,36 @@
 import "../styles/navBar.css";
 import NotificationsActiveIcon from '@mui/icons-material/NotificationsActive';
-import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import { useEffect, useState } from "react";
 import { io } from "socket.io-client";
 import toast from "react-hot-toast";
+import useFetch from "../customHooks/useFetch";
 
 const socket = io('http://localhost:3000');
 
+const notify = (message) => toast.info(message, {
+    position: "top-right",
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: false,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: "light",
+});;
+
 export default function NavBar() {
-    const [notifications, setNotifications] = useState(["New comment on your post",
-        "Your profile was viewed",
-        "Someone liked your comment",
-        "New follower"]);
+    const [notifications, setNotifications] = useState([]);
     const [isActive, setIsActive] = useState(false);
+    const { data, loading, error } = useFetch('/notifications');
+    console.log(data, loading, error);
 
     useEffect(() => {
         const token = localStorage.getItem('token') || '';
         socket.emit('authenticate', token);
         socket.emit('join', { token });
         socket.on('message', (data) => {
-            toast.custom(data.text, {
-                icon: '👏',
-                style: {
-                    borderRadius: '10px',
-                    color: 'var(--primary-color)',
-                    backgroundColor: 'var(----background-color-secondary)',
-                },
-            });
+            notify(data.text);
             setNotifications((prevNotifications) => [
                 ...prevNotifications,
                 data.text
