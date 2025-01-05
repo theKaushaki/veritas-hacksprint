@@ -27,62 +27,19 @@ const FormsPage = () => {
           <li
             key={form.id}
             className="form-item"
-            onClick={() => handleFormClick(form)} // Toggle the selected form
+            onClick={() => handleFormClick(form)}
           >
             {form.title}
           </li>
         ))}
       </ul>
 
-      {/* Only show the form to fill when a form is selected */}
       {selectedForm && (
         <div className="form-container">
           <h2>{selectedForm.title}</h2>
-          <form className="form-group">
-            <div className="form-group">
-              <label htmlFor="name">Name:</label>
-              <input type="text" id="name" placeholder="Enter your name" />
-            </div>
-
-            <div className="form-group">
-              <label htmlFor="email">Email:</label>
-              <input type="email" id="email" placeholder="Enter your email" />
-            </div>
-
-            <div className="form-group">
-              <label htmlFor="dob">Date of Birth:</label>
-              <input type="date" id="dob" />
-            </div>
-
-            <div className="form-group">
-              <label>Gender:</label>
-              <div className="radio-group">
-                <label>
-                  <input type="radio" name="gender" value="male" /> Male
-                </label>
-                <label>
-                  <input type="radio" name="gender" value="female" /> Female
-                </label>
-                <label>
-                  <input type="radio" name="gender" value="other" /> Other
-                </label>
-              </div>
-            </div>
-
-            <div className="form-group">
-              <label htmlFor="course">Course:</label>
-              <select id="course">
-                <option value="">Select a course</option>
-                <option value="cs">Computer Science</option>
-                <option value="ee">Electrical Engineering</option>
-                <option value="me">Mechanical Engineering</option>
-              </select>
-            </div>
-
-            <button type="submit" className="submit-button">
-              Submit
-            </button>
-          </form>
+          <p>
+            Open the form here: <a href={selectedForm.url} target="_blank" rel="noopener noreferrer">Click here</a>
+          </p>
         </div>
       )}
     </div>
@@ -95,7 +52,7 @@ const ProfilePage = ({ studentDetails }) => {
     <div className="profile-section">
       <img
         src={studentDetails.profilePicture}
-        alt={`${studentDetails.name}'s profile`} // Fixed alt template literal
+        alt={`${studentDetails.name}'s profile`}
         className="profile-picture"
       />
       <div className="credentials">
@@ -156,6 +113,13 @@ const StudentDashboard = () => {
             Track
           </li>
         </ul>
+        {/* Add the Notification Button */}
+        <button
+          className="notification-button"
+          onClick={() => window.open('https://mail.google.com', '_blank')}
+        >
+          Notifications
+        </button>
       </nav>
       <div className="dashboard-content">{renderSection()}</div>
     </div>
