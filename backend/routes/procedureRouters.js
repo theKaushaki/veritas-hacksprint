@@ -76,13 +76,14 @@ const procedureController = {
         try {
             const { responses } = req.body;
             const user = req.user;
+            console.log(user);
             const procedure = await procedureModel.findById(req.params.id);
             if (!procedure)
                 return res.status(404).json({ message: 'Procedure not found' });
 
-            submissionModel.create({ procedure: req.params.id, responses, studentId: user.id });
+            submissionModel.create({ procedureId: req.params.id, responses, studentId: user.id });
 
-            // notification.notifyFaculty([procedure.assignedTo], 'New submission received by student - ' + user.id);
+            res.status(201).json({ message: 'Procedure applied successfully' });
 
         } catch (error) {
             res.status(500).json({ error: error.message });

@@ -63,6 +63,7 @@
   
   .dashboard-nav li:hover {
     background-color: #eaf2f8;
+    color: var(--text-color);
   }
   
   /* Content Section Styles */
@@ -181,5 +182,48 @@
   
   .delete-button:hover {
     background-color: #c0392b;
+  }
+  
+  .submissions-cards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+  
+  .submission-card {
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: calc(33.333% - 20px);
+    box-sizing: border-box;
+  }
+  
+  .submission-card h3 {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+  }
+  
+  .submission-item {
+    margin-bottom: 15px;
+  }
+  
+  .submission-item h4 {
+    font-size: 1rem;
+    font-weight: bold;
+  }
+  
+  .submissions-list ul {
+    list-style-type: none;
+    padding-left: 0;
+  }
+  
+  .submissions-list ul li {
+    margin-bottom: 5px;
+  }
+  
+  .submission-item p {
+    font-size: 0.9rem;
+    color: #555;
   }
   

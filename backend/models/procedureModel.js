@@ -3,8 +3,8 @@ const mongoose = require('mongoose');
 const procedureSchema = new mongoose.Schema({
   title: { type: String, required: true },
   description: { type: String },
-  createdBy: { type: mongoose.Schema.Types.ObjectId, ref: 'University', required: true },
-  assignedTo: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Teacher' }],
+  createdBy: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
+  assignedTo: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }],
   deadline: { type: Date },
   branch: { type: String, default: 'All' },
   formFields: [{

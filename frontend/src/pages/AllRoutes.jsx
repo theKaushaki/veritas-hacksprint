@@ -3,6 +3,7 @@ import Home from './Home'
 import FacultyHome from "./FacultyHome";
 import StudentDashboard from './StudentDashboard';
 import PrivateRoute from '../components/PrivateRoute';
+import TeacherDashboard from './TeacherDashboard';
 
 export default function AllRoutes() {
     return (
@@ -10,9 +11,9 @@ export default function AllRoutes() {
             <Route path='/' element={<Home />} />
             <Route path='/login' element={<Home login={true} />} />
             <Route path='*' element={<h1>Not Found</h1>} />
-            <Route path='dashboard/teacher' element={
+            <Route path='dashboard/department' element={
                 <PrivateRoute role='teacher'>
-                    <FacultyHome />
+                    <TeacherDashboard />
                 </PrivateRoute>
             } />
             <Route path='dashboard/student' role='student' element={

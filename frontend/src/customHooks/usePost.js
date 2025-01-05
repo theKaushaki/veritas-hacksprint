@@ -24,6 +24,7 @@ const usePost = (endpoint) => {
             });
 
             setData(response.data);
+            toast.success(response.data.message || "Data posted successfully");
             setError("");
         } catch (err) {
             toast.error(err?.response?.data?.error || "An error occurred while posting data.");
