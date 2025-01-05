@@ -255,3 +255,177 @@ button:active {
     transform: scale(0.95);
     box-shadow: var(--shadow-light);
 }
+
+/* Add this to your home.css */
+
+.login-popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .login-popup {
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    text-align: center;
+  }
+  
+  .login-popup h2 {
+    margin-bottom: 20px;
+  }
+  
+  .login-popup input[type="email"],
+  .login-popup input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .login-popup button {
+    background: #007BFF;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .login-popup button:hover {
+    background: #0056b3;
+  }
+  
+  .login-popup .options {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px;
+  }
+  
+  .login-popup .options button {
+    background: none;
+    border: none;
+    color: #007BFF;
+    cursor: pointer;
+  }
+  
+  .login-popup .options button:hover {
+    text-decoration: underline;
+  }
+  
+  .login-popup .register-link {
+    margin-top: 10px;
+  }
+  
+  .close-popup {
+    background: #dc3545;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    margin-top: 10px;
+    cursor: pointer;
+  }
+  
+  .close-popup:hover {
+    background: #c82333;
+  }
+  
+/* Add this to your home.css */
+
+.register-popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .register-popup {
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+    max-height: 90vh;
+    overflow-y: auto;
+    text-align: center;
+  }
+  
+  .register-popup h2 {
+    margin-bottom: 20px;
+  }
+  
+  .register-popup input[type="text"],
+  .register-popup input[type="email"],
+  .register-popup input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .register-popup button {
+    background: #007BFF;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .register-popup button:hover {
+    background: #0056b3;
+  }
+  
+  .register-popup .options {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px;
+  }
+  
+  .register-popup .options button {
+    background: none;
+    border: none;
+    color: #007BFF;
+    cursor: pointer;
+  }
+  
+  .register-popup .options button:hover {
+    text-decoration: underline;
+  }
+  
+  .register-popup .options .active {
+    font-weight: bold;
+    text-decoration: underline;
+  }
+  
+  .login-link, .register-link {
+    margin-top: 10px;
+  }
+  
+  .login-link a, .register-link a {
+    color: #007BFF;
+    cursor: pointer;
+    text-decoration: underline;
+  }
+  
+  .login-link a:hover, .register-link a:hover {
+    text-decoration: none;
+  }
+  
