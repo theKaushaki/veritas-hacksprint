@@ -11,7 +11,7 @@ export default function AllRoutes() {
             <Route path='/' element={<Home />} />
             <Route path='/login' element={<Home login={true} />} />
             <Route path='*' element={<h1>Not Found</h1>} />
-            <Route path='dashboard/teacher' element={
+            <Route path='dashboard/department' element={
                 <PrivateRoute role='teacher'>
                     <TeacherDashboard />
                 </PrivateRoute>

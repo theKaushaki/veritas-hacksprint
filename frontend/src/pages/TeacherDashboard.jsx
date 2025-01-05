@@ -1,5 +1,7 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import '../styles/TeacherDashboard.css';
+import useFetch from '../customHooks/useFetch';
+import { toast } from 'react-toastify';
 
 // ProfileSection Component
 const ProfileSection = ({ teacherDetails }) => {
@@ -52,34 +54,43 @@ const CreateSection = () => {
   );
 };
 
-// ManageSection Component
 const ManageSection = () => {
-  const items = [
-    { id: 1, title: 'Assignment 1', description: 'First assignment details' },
-    { id: 2, title: 'Quiz 1', description: 'First quiz details' },
-    { id: 3, title: 'Project 1', description: 'First project details' },
-  ];
 
-  const handleDelete = (id) => {
-    alert(`Item with ID ${id} deleted.`);
-  };
+  const [submissions, setSubmissions] = useState([]);
+  const { data, error, loading } = useFetch('/submissions');  // Call the API endpoint to get submissions
+
+  useEffect(() => {
+    if (data) {
+      setSubmissions(data);
+    }
+
+    if (error) {
+      toast.error("Error fetching submissions");
+    }
+  }, [data, error]);
+
+  if (loading) {
+    return <p>Loading...</p>;
+  }
+
+  console.log(submissions);
 
   return (
-    <div className="manage-section">
-      <h2>Manage Items</h2>
-      <ul className="item-list">
-        {items.map((item) => (
-          <li key={item.id} className="item">
-            <h3>{item.title}</h3>
-            <p>{item.description}</p>
-            <button
-              className="delete-button"
-              onClick={() => handleDelete(item.id)}
-            >
-              Delete
-            </button>
-          </li>
-        ))}
+    <div className="submissions-page">
+      <h2>All Submissions</h2>
+      <ul className="submissions-list" style={{ listStyle: 'none' }}>
+        {submissions.length === 0 ? (
+          <p>No submissions found.</p>
+        ) : (
+          submissions.map((submission) => (
+            <li key={submission._id} className="submission-item">
+              <p><strong>Student:</strong> {submission.studentId.name}</p>
+              <p><strong>Status:</strong> {submission.status}</p>
+              <p><strong>Teacher Comments:</strong> {submission.teacherComments || 'No comments'}</p>
+              <p><strong>Submitted on:</strong> {new Date(submission.createdAt).toLocaleDateString()}</p>
+            </li>
+          ))
+        )}
       </ul>
     </div>
   );
@@ -148,7 +159,7 @@ const TeacherDashboard = () => {
             className={activeSection === 'Manage' ? 'active' : ''}
             onClick={() => setActiveSection('Manage')}
           >
-            Manage
+            Submissions
           </li>
         </ul>
       </nav>
