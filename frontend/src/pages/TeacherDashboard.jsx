@@ -12,7 +12,7 @@ const ProfileSection = ({ teacherDetails }) => {
       />
       <div className="credentials">
         <h2>{teacherDetails.name}</h2>
-        <p><strong>Employee ID-</strong> {teacherDetails.employeeId}</p>
+        <p><strong>Employee ID:</strong> {teacherDetails.employeeId}</p>
         <p><strong>Subject:</strong> {teacherDetails.subject}</p>
         <p><strong>Years of Experience:</strong> {teacherDetails.experience}</p>
       </div>
