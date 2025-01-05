@@ -70,7 +70,7 @@ const StudentDashboard = () => {
   const [activeSection, setActiveSection] = useState('Profile');
 
   const studentDetails = {
-    name: 'AMAN',
+    name: 'AMAN DEV',
     rollNumber: '123456',
     course: 'Computer Science',
     year: '3rd Year',
