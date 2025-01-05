@@ -1,0 +1,102 @@
+/* General Container Styles */
+.dashboard-container {
+    font-family: Arial, sans-serif;
+  }
+  
+  .dashboard-nav {
+    display: flex;
+    background-color: #343a40;
+    padding: 10px;
+    color: white;
+    align-items: center;
+  }
+  
+  .dashboard-nav ul {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .dashboard-nav li {
+    padding: 10px 20px;
+    cursor: pointer;
+  }
+  
+  .dashboard-nav li.active {
+    background-color: #495057;
+    border-radius: 5px;
+  }
+  
+  .dashboard-content {
+    padding: 20px;
+  }
+  
+  /* FormsPage Styles */
+  .forms-page {
+    margin: 20px;
+  }
+  
+  .forms-list {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .form-item {
+    cursor: pointer;
+    padding: 10px;
+    border: 1px solid #ccc;
+    margin: 5px 0;
+    border-radius: 5px;
+  }
+  
+  .form-item:hover {
+    background-color: #f0f0f0;
+  }
+  
+  .form-container {
+    margin-top: 20px;
+  }
+  
+  .form-container a {
+    color: #007bff;
+    text-decoration: none;
+  }
+  
+  .form-container a:hover {
+    text-decoration: underline;
+  }
+  
+  /* ProfilePage Styles */
+  .profile-section {
+    display: flex;
+    align-items: center;
+  }
+  
+  .profile-picture {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    margin-right: 20px;
+  }
+  
+  .credentials h2 {
+    margin: 0;
+  }
+  
+  /* Notification Button Styles */
+  .notification-button {
+    margin-left: auto;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 8px 16px;
+    cursor: pointer;
+    font-size: 14px;
+  }
+  
+  .notification-button:hover {
+    background-color: #0056b3;
+  }
+  

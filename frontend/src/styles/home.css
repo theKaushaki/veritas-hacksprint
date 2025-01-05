@@ -1,0 +1,431 @@
+/* Navbar */
+.navbar {
+    background: linear-gradient(to right, #B0E0E6, #87CEEB, #008080);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    padding: 10px 20px;
+    box-sizing: border-box;
+}
+
+body {
+    background-image: url('../assets/back.jpg');
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;  /* Keeps the background image fixed */
+    color: var(--text-dark);
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+
+main {
+    padding: 20px;
+    padding-top: 100px; /* Ensure content is not hidden behind navbar */
+}
+
+header {
+    background-color: var(--background-color-secondary);
+    padding: 10px 20px;
+    box-shadow: var(--shadow-light);
+}
+
+.navbar .logo {
+    height: 50px;
+}
+
+.navbar ul {
+    list-style: none;
+    display: flex;
+    gap: 30px;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar li a {
+    color: #f8f8ff;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+.navbar li a:hover {
+    color: var(--link-hover-color);
+}
+
+.hero {
+    text-align: center;
+    padding: 50px 20px;
+    background-color: rgba(249, 249, 249, 0.7);
+    box-shadow: var(--shadow-light);
+    margin-bottom: 400px;
+    background-image: url('../assets/banner.jpg');
+}
+
+.hero h1 {
+    font-size: 2.5rem;
+    color: var(--text-dark);
+    margin-bottom: 10px;
+}
+
+.hero p {
+    color: var(--text-light);
+    margin-bottom: 20px;
+}
+
+.hero button {
+    padding: 10px 30px;
+    font-size: 1rem;
+    border: none;
+    background-color: var(--button-background);
+    color: var(--button-text);
+    border-radius: 5px;
+    cursor: pointer;
+    box-shadow: var(--shadow-medium);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+    margin-right: 20px;  /* Adds gap between buttons */
+}
+
+.hero button:hover {
+    background-color: var(--button-hover-background);
+    transform: scale(1.1);
+    box-shadow: var(--shadow-dark);
+}
+
+/* Optional: Remove margin for the last button to prevent unnecessary space at the end */
+.hero button:last-child {
+    margin-right: 0;
+}
+
+.about p {
+    color: var(--text-light);
+    font-size: 1.2rem;
+}
+
+/* Services Section */
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%; /* Ensure full width */
+    height: 100%; /* Ensure full height */
+}
+
+.about {
+    padding: 80px 20px;
+    background-color: rgba(240, 152, 117, 0.7);
+    box-shadow: var(--shadow-light);
+    margin-bottom: 20px;
+    width: 100%;
+    max-width: 100vw;
+    box-sizing: border-box;
+    color: #fff;
+    position: relative;
+  }
+  
+.about-hr {
+    border: none;
+    height: 1px;
+    background: #fff; /* White line for contrast */
+    margin: 10px 0; /* Space around the line */
+}
+  
+.two-columns {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    align-items: flex-start;
+}
+  
+.column {
+    flex: 1;
+    padding: 10px;
+    text-align: left;  /* Ensures the text aligns to the left */
+    background-color: rgba(0, 0, 0, 0.5);  /* Semi-transparent black background for better readability */
+    color: #FFFFFF;  /* Ensures the text color contrasts well with the background */
+    border-radius: 5px;  /* Optional: for a softer look */
+    padding: 15px;
+}
+  
+.about h3, .about p {
+    color: #FFFFFF; /* White text for high contrast */
+}
+
+
+  
+  
+
+/* About Us Heading - Positioning it to the top-center */
+.about h2 {
+    position: absolute;
+    top: 20px;  /* Distance from the top */
+    left: 50%;  /* Center horizontally */
+    transform: translateX(-50%);  /* Adjust for perfect centering */
+    font-size: 2rem;
+    color: var(--text-dark);
+    margin-bottom: 20px;
+}
+
+.services {
+    padding: 80px 20px;
+    background-color: rgba(96, 190, 221, 0.7);
+    box-shadow: var(--shadow-light);
+    margin-bottom: 20px;
+    width: 100%;
+    max-width: 100vw;
+    box-sizing: border-box;
+    color: #fff;
+    position: relative;
+}
+  
+.services-hr {
+    border: none;
+    height: 1px;
+    background: #fff; /* White line for contrast */
+    margin: 10px 0; /* Space around the line */
+}
+  
+.services h2 {
+    position: relative;
+    font-size: 2rem;
+    color: var(--text-dark);
+    margin-bottom: 20px;
+}
+  
+.services-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    align-items: flex-start;
+}
+  
+.service-box {
+    flex: 1 1 calc(33.33% - 40px); /* Adjust the width and spacing */
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black background for better readability */
+    color: #FFFFFF; /* Ensures the text color contrasts well with the background */
+    border-radius: 5px; /* Optional: for a softer look */
+    padding: 15px;
+    text-align: justify; /* Ensures the text aligns to the left */
+    box-shadow: var(--shadow-medium);
+}
+  
+.service-box h3 {
+    margin-top: 0;
+}
+  
+.service-box ul {
+    list-style-type: none
+}
+
+/* Footer */
+footer {
+    background-color: #1bafaf;
+    color: var(--text-light);
+    text-align: center;
+    padding: 10px;
+    font-size: 0.9rem;
+    border-top: 1px solid var(--border-color);
+}
+
+button {
+    background-color: var(--button-background);
+    color: var(--button-text);
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    box-shadow: var(--shadow-medium);
+    transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+button:hover {
+    background-color: var(--button-hover-background);
+    transform: scale(1.05);
+    box-shadow: var(--shadow-dark);
+}
+
+button:active {
+    transform: scale(0.95);
+    box-shadow: var(--shadow-light);
+}
+
+/* Add this to your home.css */
+
+.login-popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .login-popup {
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    text-align: center;
+  }
+  
+  .login-popup h2 {
+    margin-bottom: 20px;
+  }
+  
+  .login-popup input[type="email"],
+  .login-popup input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .login-popup button {
+    background: #007BFF;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .login-popup button:hover {
+    background: #0056b3;
+  }
+  
+  .login-popup .options {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px;
+  }
+  
+  .login-popup .options button {
+    background: none;
+    border: none;
+    color: #007BFF;
+    cursor: pointer;
+  }
+  
+  .login-popup .options button:hover {
+    text-decoration: underline;
+  }
+  
+  .login-popup .register-link {
+    margin-top: 10px;
+  }
+  
+  .close-popup {
+    background: #dc3545;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    margin-top: 10px;
+    cursor: pointer;
+  }
+  
+  .close-popup:hover {
+    background: #c82333;
+  }
+  
+/* Add this to your home.css */
+
+.register-popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .register-popup {
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+    max-height: 90vh;
+    overflow-y: auto;
+    text-align: center;
+  }
+  
+  .register-popup h2 {
+    margin-bottom: 20px;
+  }
+  
+  .register-popup input[type="text"],
+  .register-popup input[type="email"],
+  .register-popup input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .register-popup button {
+    background: #007BFF;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .register-popup button:hover {
+    background: #0056b3;
+  }
+  
+  .register-popup .options {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px;
+  }
+  
+  .register-popup .options button {
+    background: none;
+    border: none;
+    color: #007BFF;
+    cursor: pointer;
+  }
+  
+  .register-popup .options button:hover {
+    text-decoration: underline;
+  }
+  
+  .register-popup .options .active {
+    font-weight: bold;
+    text-decoration: underline;
+  }
+  
+  .login-link, .register-link {
+    margin-top: 10px;
+  }
+  
+  .login-link a, .register-link a {
+    color: #007BFF;
+    cursor: pointer;
+    text-decoration: underline;
+  }
+  
+  .login-link a:hover, .register-link a:hover {
+    text-decoration: none;
+  }
+  
