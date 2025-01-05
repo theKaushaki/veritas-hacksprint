@@ -1,4 +1,4 @@
-# UniForm - University Procedure Management System (UPMS)
+# UniForm - University Form Management System (UPMS)
 
 UniForm is an innovative University Procedure Management System designed to streamline and automate academic administrative processes at universities. This platform offers a comprehensive solution for managing student applications, form submissions, approval workflows, and communication between students, faculty, and administrators. By digitizing and simplifying these processes, UniForm eliminates bottlenecks, fosters collaboration, and ensures transparency, creating a more efficient and streamlined academic environment for all stakeholders.
 
