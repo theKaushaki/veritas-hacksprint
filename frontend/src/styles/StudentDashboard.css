@@ -1,0 +1,203 @@
+/* General styling for the dashboard */
+.dashboard-container {
+    display: flex;
+    flex-direction: column;
+    font-family: Arial, sans-serif;
+    opacity: 0;
+    animation: fadeIn 1s forwards; /* Fade-in animation */
+  }
+  
+  /* Top Navigation Bar */
+  .dashboard-nav {
+    background-color: #1e3a8a; /* Dark blue */
+    padding: 10px;
+    color: white;
+    transform: translateY(-100px);
+    animation: slideDown 0.5s ease-out forwards; /* Slide-down animation */
+  }
+  
+  .dashboard-nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: space-around;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .dashboard-nav ul li {
+    cursor: pointer;
+    padding: 10px 15px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+  }
+  
+  .dashboard-nav ul li:hover {
+    background-color: #374151; /* Slightly darker */
+    border-radius: 5px;
+    transform: scale(1.1); /* Slight hover effect */
+  }
+  
+  /* Profile Section */
+  .profile-section {
+    text-align: center;
+    padding: 20px;
+    background-color: #f1f5f9; /* Light gray */
+    border-radius: 10px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    margin: 20px auto;
+    max-width: 400px;
+    opacity: 0;
+    animation: fadeIn 1s forwards 0.5s; /* Fade-in animation with delay */
+  }
+  
+  .profile-picture {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 15px;
+    border: 2px solid #1e3a8a; /* Border around picture */
+    transform: scale(0);
+    animation: scaleIn 0.5s ease-out forwards 1s; /* Scale-in animation */
+  }
+  
+  .credentials h2 {
+    color: #1e3a8a;
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+  
+  .credentials p {
+    color: #4b5563; /* Dark gray */
+    margin: 5px 0;
+  }
+  
+  /* Forms Page */
+  .forms-page {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    margin: 20px auto;
+    max-width: 500px;
+    opacity: 0;
+    animation: fadeIn 1s forwards 1s; /* Fade-in animation with delay */
+  }
+  
+  .forms-page h2 {
+    color: #1e3a8a;
+  }
+  
+  .form-container {
+    margin-top: 10px;
+    opacity: 0;
+    animation: formSlideIn 1s ease-out forwards; /* Sliding effect for form container */
+  }
+  
+  /* Smooth slide-in for form container */
+  @keyframes formSlideIn {
+    0% {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .form-group {
+    margin-bottom: 15px;
+  }
+  
+  .form-group label {
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+  .form-group input,
+  .form-group select {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #d1d5db;
+    border-radius: 5px;
+    transition: border 0.3s ease;
+  }
+  
+  .form-group input[type="radio"] {
+    width: auto;
+  }
+  
+  .form-group input:focus,
+  .form-group select:focus {
+    border: 1px solid #1e3a8a; /* Focused border color */
+  }
+  
+  .submit-button {
+    padding: 10px 20px;
+    background-color: #1e3a8a;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+  }
+  
+  .submit-button:hover {
+    background-color: #374151;
+    transform: scale(1.05); /* Slight scale-up effect on hover */
+  }
+  
+  .submit-button:active {
+    transform: scale(0.98); /* Slight scale-down effect on click */
+  }
+  
+  /* Forms List */
+  .forms-list {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .form-item {
+    background-color: #f8fafc;
+    padding: 15px;
+    margin: 10px 0;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s ease;
+    opacity: 0;
+    animation: fadeIn 0.5s forwards; /* Fade-in effect for form items */
+  }
+  
+  .form-item:hover {
+    background-color: #e5e7eb;
+    transform: scale(1.05); /* Slight hover scale effect */
+  }
+  
+  /* Animations */
+  @keyframes fadeIn {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+  
+  @keyframes scaleIn {
+    0% {
+      transform: scale(0);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+  
+  @keyframes slideDown {
+    0% {
+      transform: translateY(-100px);
+    }
+    100% {
+      transform: translateY(0);
+    }
+  }
+  
