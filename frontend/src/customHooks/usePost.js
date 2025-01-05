@@ -1,14 +1,20 @@
 import { useState } from "react";
 import axios from "axios";
+import { toast } from "react-toastify";
 
-const BASE_URL = "http//localhost:3000/api";
+const BASE_URL = "http://localhost:3000/api";
 
 const usePost = (endpoint) => {
-    const [data, setData] = useState(null); const [loading, setLoading] = useState(false); const [error, setError] = useState(null);
+    const [data, setData] = useState({});
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState("");
     const postData = async (payload) => {
-        setLoading(true); setError(null);
+        setLoading(true);
+        setError("");
         try {
-            const response = await axios(`${BASE_URL}${endpoint}`, {
+            const url = `${BASE_URL}${endpoint}`;
+            console.log(url);
+            const response = await axios(url, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -18,8 +24,10 @@ const usePost = (endpoint) => {
             });
 
             setData(response.data);
+            setError("");
         } catch (err) {
-            setError(err.response ? err.response.data : err.message || "An error occurred while posting data.");
+            toast.error(err?.response?.data?.error || "An error occurred while posting data.");
+            setError(err?.response?.data?.error, "An error occurred while posting data.");
         } finally {
             setLoading(false);
         }

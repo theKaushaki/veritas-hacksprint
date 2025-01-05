@@ -45,7 +45,7 @@ const userSchema = new mongoose.Schema(
         return this.role === roles.STUDENT;
       },
     },
-    universityEmail: {
+    email: {
       type: String,
       required: function () {
         return this.role === roles.DEPARTMENT || this.role === roles.UNIVERSITY;

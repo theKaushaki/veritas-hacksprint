@@ -1,23 +1,22 @@
 import React, { useState, useEffect } from 'react';
 import logo from '../assets/UPMS.png';
 import '../styles/home.css';
+import AuthPopup from '../components/AuthPopup';
 
-export default function Home() {
-  const [loginType, setLoginType] = useState('student'); // State to manage login type
-  const [showLoginPopup, setShowLoginPopup] = useState(false); // State to manage login popup visibility
-  const [showRegisterPopup, setShowRegisterPopup] = useState(false); // State to manage register popup visibility
-  const [registerType, setRegisterType] = useState('student'); // State to manage register type
-
-  // Smooth scroll to top when Home is clicked
+export default function Home({ login }) {
+  const [loginType, setLoginType] = useState('student');
+  const [showLoginPopup, setShowLoginPopup] = useState(login);
+  const [showRegisterPopup, setShowRegisterPopup] = useState(false);
+  const [registerType, setRegisterType] = useState('student');
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  // Smooth scroll for anchor links with offset
+
   const handleScroll = (e, targetId) => {
     e.preventDefault();
     const target = document.querySelector(targetId);
-    const offset = 80; // Adjust based on navbar height
+    const offset = 80;
     const topPosition = target.offsetTop - offset;
 
     window.scrollTo({
@@ -26,14 +25,14 @@ export default function Home() {
     });
   };
 
-  // Function to show login popup
+
   const openLoginPopup = (type) => {
     setLoginType(type);
     setShowLoginPopup(true);
-    setShowRegisterPopup(false); // Ensure register popup is closed
+    setShowRegisterPopup(false);
   };
 
-  // Function to hide login popup and register popup when clicking outside
+
   const handleClickOutside = (e) => {
     if (e.target.className === 'login-popup-overlay' || e.target.className === 'register-popup-overlay') {
       setShowLoginPopup(false);
@@ -41,18 +40,18 @@ export default function Home() {
     }
   };
 
-  // Function to show register popup
+
   const openRegisterPopup = (type) => {
     setRegisterType(type);
     setShowRegisterPopup(true);
-    setShowLoginPopup(false); // Ensure login popup is closed
+    setShowLoginPopup(false);
   };
 
   useEffect(() => {
-    // Add event listener to handle clicks outside the popup
+
     document.addEventListener('click', handleClickOutside);
     return () => {
-      // Clean up the event listener on component unmount
+
       document.removeEventListener('click', handleClickOutside);
     };
   }, []);
@@ -153,74 +152,8 @@ export default function Home() {
         <p>&copy; 2025 Veritas. All Rights Reserved.</p>
       </footer>
 
-      {showLoginPopup && (
-        <div className="login-popup-overlay">
-          <div className="login-popup">
-            <div className="options">
-              <button onClick={() => setLoginType('student')} className={loginType === 'student' ? 'active' : ''}>Student</button>
-              <button onClick={() => setLoginType('teacher')} className={loginType === 'teacher' ? 'active' : ''}>Teacher</button>
-              <button onClick={() => setLoginType('university')} className={loginType === 'university' ? 'active' : ''}>University</button>
-            </div>
-            <h2>Login - {loginType.charAt(0).toUpperCase() + loginType.slice(1)}</h2>
-            <form>
-              <input
-                type="email"
-                placeholder={loginType === 'university' ? 'Master Email' : 'University Email'}
-                required
-              />
-              <input type="password" placeholder="Password" required />
-              <button type="submit">Login</button>
-            </form>
-            <div className="register-link">
-              Don't have an account? <a href="#" onClick={() => openRegisterPopup('student')}>Register</a>
-            </div>
-          </div>
-        </div>
-      )}
+      <AuthPopup openLoginPopup={openLoginPopup} openRegisterPopup={openRegisterPopup} showLoginPopup={showLoginPopup} showRegisterPopup={showRegisterPopup} />
 
-      {showRegisterPopup && (
-        <div className="register-popup-overlay">
-          <div className="register-popup">
-            <div className="options">
-              <button onClick={() => setRegisterType('student')} className={registerType === 'student' ? 'active' : ''}>Student</button>
-              <button onClick={() => setRegisterType('teacher')} className={registerType === 'teacher' ? 'active' : ''}>Teacher</button>
-              <button onClick={() => setRegisterType('university')} className={registerType === 'university' ? 'active' : ''}>University</button>
-            </div>
-            <h2>Register - {registerType.charAt(0).toUpperCase() + registerType.slice(1)}</h2>
-            <form>
-              {registerType !== 'university' && (
-                <input
-                  type="text"
-                  placeholder="Full Name"
-                  required
-                />
-              )}
-              {registerType === 'university' ? (
-                <>
-                  <input type="email" placeholder="Master Email" required />
-                  <input type="password" placeholder="Create Password" required />
-                  <input type="password" placeholder="Re-write Password" required />
-                </>
-              ) : (
-                <>
-                  <input
-                    type="email"
-                    placeholder="University Email"
-                    required
-                  />
-                  <input type="password" placeholder="Password" required />
-                  <input type="password" placeholder="Confirm Password" required />
-                </>
-              )}
-              <button type="submit">Register</button>
-            </form>
-            <div className="login-link">
-              Already have an account? <a href="#" onClick={() => openLoginPopup('student')}>Login</a>
-            </div>
-
-          </div>
-        </div>
-      )}
     </>
   );
 }
