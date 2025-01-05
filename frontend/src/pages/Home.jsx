@@ -3,22 +3,20 @@ import logo from '../assets/UPMS.png';
 import '../styles/home.css';
 import AuthPopup from '../components/AuthPopup';
 
-export default function Home() {
-  const [loginType, setLoginType] = useState('student'); // State to manage login type
-  const [showLoginPopup, setShowLoginPopup] = useState(false); // State to manage login popup visibility
-  const [showRegisterPopup, setShowRegisterPopup] = useState(false); // State to manage register popup visibility
-  const [registerType, setRegisterType] = useState('student'); // State to manage register type
-
-  // Smooth scroll to top when Home is clicked
+export default function Home({ login }) {
+  const [loginType, setLoginType] = useState('student');
+  const [showLoginPopup, setShowLoginPopup] = useState(login);
+  const [showRegisterPopup, setShowRegisterPopup] = useState(false);
+  const [registerType, setRegisterType] = useState('student');
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  // Smooth scroll for anchor links with offset
+
   const handleScroll = (e, targetId) => {
     e.preventDefault();
     const target = document.querySelector(targetId);
-    const offset = 80; // Adjust based on navbar height
+    const offset = 80;
     const topPosition = target.offsetTop - offset;
 
     window.scrollTo({
@@ -27,14 +25,14 @@ export default function Home() {
     });
   };
 
-  // Function to show login popup
+
   const openLoginPopup = (type) => {
     setLoginType(type);
     setShowLoginPopup(true);
-    setShowRegisterPopup(false); // Ensure register popup is closed
+    setShowRegisterPopup(false);
   };
 
-  // Function to hide login popup and register popup when clicking outside
+
   const handleClickOutside = (e) => {
     if (e.target.className === 'login-popup-overlay' || e.target.className === 'register-popup-overlay') {
       setShowLoginPopup(false);
@@ -42,18 +40,18 @@ export default function Home() {
     }
   };
 
-  // Function to show register popup
+
   const openRegisterPopup = (type) => {
     setRegisterType(type);
     setShowRegisterPopup(true);
-    setShowLoginPopup(false); // Ensure login popup is closed
+    setShowLoginPopup(false);
   };
 
   useEffect(() => {
-    // Add event listener to handle clicks outside the popup
+
     document.addEventListener('click', handleClickOutside);
     return () => {
-      // Clean up the event listener on component unmount
+
       document.removeEventListener('click', handleClickOutside);
     };
   }, []);
