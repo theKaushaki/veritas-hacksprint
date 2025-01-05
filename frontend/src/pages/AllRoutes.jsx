@@ -8,8 +8,8 @@ export default function AllRoutes() {
         <Routes>
             <Route path='/' element={<Home />} />
             <Route path='*' element={<h1>Not Found</h1>} />
-            <Route path='/faculty' element={<FacultyHome />} />
-            <Route path='/student' element={<StudentDashboard />} />
+            <Route path='dashboard/teacher' element={<FacultyHome />} />
+            <Route path='dashboard/student' element={<StudentDashboard />} />
         </Routes>
     )
 }
