@@ -4,6 +4,8 @@ import FacultyHome from "./FacultyHome";
 import StudentDashboard from './StudentDashboard';
 import PrivateRoute from '../components/PrivateRoute';
 import TeacherDashboard from './TeacherDashboard';
+import AdminDashBoard from './AdminDashboard';
+import Formbuilder from '../components/FormBuilder';
 
 export default function AllRoutes() {
     return (
@@ -19,6 +21,16 @@ export default function AllRoutes() {
             <Route path='dashboard/student' role='student' element={
                 <PrivateRoute>
                     <StudentDashboard />
+                </PrivateRoute>
+            } />
+            <Route path='dashboard/university' role='university' element={
+                <PrivateRoute>
+                    <AdminDashBoard />
+                </PrivateRoute>
+            } />
+            <Route path='form/create' role='faculty' element={
+                <PrivateRoute>
+                    <Formbuilder />
                 </PrivateRoute>
             } />
         </Routes>

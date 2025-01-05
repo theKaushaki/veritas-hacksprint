@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
-import './AdminDashboard.css';
+import '../styles/AdminDashBoard.css';
+import { useNavigate } from 'react-router-dom';
 
-// Sample Data for Forms Submitted by Students
 const submittedForms = [
   {
     id: 1,
     studentName: 'AMAN',
     formTitle: 'Feedback Form',
-    status: 'Pending', // Initial status
+    status: 'Pending', 
     formDetails: 'Details of the feedback form...',
   },
   {
@@ -29,16 +29,22 @@ const submittedForms = [
 const AdminDashboard = () => {
   const [forms, setForms] = useState(submittedForms);
 
-  // Function to handle form status change
   const handleStatusChange = (formId, newStatus) => {
     setForms(forms.map((form) => 
       form.id === formId ? { ...form, status: newStatus } : form
     ));
   };
 
+  const navigate = useNavigate();
+
   return (
     <div className="admin-dashboard">
       <h2>University Admin Dashboard</h2>
+      <button className='' onClick={()=>{
+        navigate("/form/create")
+      }}>
+        Create New Form
+      </button>
       <div className="form-list">
         {forms.map((form) => (
           <div key={form.id} className="form-item">
