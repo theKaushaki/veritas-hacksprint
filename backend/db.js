@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-const startupFunctions = require('./models/databasePreconfigs');
 require('dotenv').config();
 
 const connectDB = async () => {
@@ -9,8 +8,6 @@ const connectDB = async () => {
       serverSelectionTimeoutMS: 10000,
       socketTimeoutMS: 45000
     });
-
-    startupFunctions();
 
     console.log('MongoDB connected successfully.');
   } catch (error) {

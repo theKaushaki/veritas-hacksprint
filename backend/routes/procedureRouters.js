@@ -1,22 +1,26 @@
 const router = require('express').Router();
 const procedureModel = require('../models/procedureModel');
 const submissionModel = require('../models/submissionModel');
-const notification = require('../utils/notification');
+const { userRoles } = require('../models/userModel');
+// const notification = require('../utils/notification');
 
 const procedureController = {
     createProcedure: async (req, res) => {
         try {
             const user = req.user;
-            if (user.role !== 'admin')
-                return res.status(401).json({ message: 'You are not authorized to access this page' });
+            if (user.role !== 'admin') {
+                return res.status(401).json({ message: 'You are not authorized to create procedures' });
+            }
 
             const { title, description, createdBy, assignedTo, deadline, formFields, branch } = req.body;
             const procedure = await procedureModel.create({ title, description, createdBy, assignedTo, deadline, formFields, branch });
 
-            if (branch === 'All')
-                notification.notifyAllUsers('New procedure created');
-            else
-                notification.notifyUserByBranch(branch, 'New procedure created');
+            if (branch === 'All') {
+                // notification.notifyAllUsers('New procedure created');
+            } else {
+                // notification.notifyUserByBranch(branch, 'New procedure created');
+            }
+
             res.status(201).json(procedure);
         } catch (error) {
             res.status(500).json({ error: error.message });
@@ -47,7 +51,7 @@ const procedureController = {
     updateProcedure: async (req, res) => {
         try {
             const user = req.user;
-            if (user.role !== 'admin')
+            if (user.role !== userRoles.UNIVERSITY)
                 return res.status(401).json({ message: 'You are not authorized to access this page' });
 
             const procedure = await procedureModel.findByIdAndUpdate(req.params.id, req.body, { new: true });
@@ -59,7 +63,7 @@ const procedureController = {
     deleteProcedure: async (req, res) => {
         try {
             const user = req.user;
-            if (user.role !== 'admin')
+            if (user.role !== userRoles.UNIVERSITY)
                 return res.status(401).json({ message: 'You are not authorized to access this page' });
 
             await procedureModel.findByIdAndDelete(req.params.id);
@@ -78,7 +82,7 @@ const procedureController = {
 
             submissionModel.create({ procedure: req.params.id, responses, studentId: user.id });
 
-            notification.notifyFaculty([procedure.assignedTo], 'New submission received by student - ' + user.id);
+            // notification.notifyFaculty([procedure.assignedTo], 'New submission received by student - ' + user.id);
 
         } catch (error) {
             res.status(500).json({ error: error.message });
