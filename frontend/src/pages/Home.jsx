@@ -134,7 +134,7 @@ export default function Home() {
             <div className="service-box">
               <h3>Form Management</h3>
               <ul>
-                <li>Provides an intuitive interface for creating, submitting, and approving academic forms.</li>
+                <li>Provides an intuitive interface for creating, submitting, and approving  forms.</li>
                 <li>Supports various forms, including leave requests, grade appeals, and scholarships.</li>
               </ul>
             </div>
@@ -188,36 +188,36 @@ export default function Home() {
             </div>
             <h2>Register - {registerType.charAt(0).toUpperCase() + registerType.slice(1)}</h2>
             <form>
-            {registerType !== 'university' && (
-              <input
-                type="text"
-                placeholder="Full Name"
-                required
-              />
-            )}
-            {registerType === 'university' ? (
-              <>
-                <input type="email" placeholder="Master Email" required />
-                <input type="password" placeholder="Create Password" required />
-                <input type="password" placeholder="Re-write Password" required />
-              </>
-            ) : (
-              <>
+              {registerType !== 'university' && (
                 <input
-                  type="email"
-                  placeholder="University Email"
+                  type="text"
+                  placeholder="Full Name"
                   required
                 />
-                <input type="password" placeholder="Password" required />
-                <input type="password" placeholder="Confirm Password" required />
-              </>
-            )}
-            <button type="submit">Register</button>
-           </form>
+              )}
+              {registerType === 'university' ? (
+                <>
+                  <input type="email" placeholder="Master Email" required />
+                  <input type="password" placeholder="Create Password" required />
+                  <input type="password" placeholder="Re-write Password" required />
+                </>
+              ) : (
+                <>
+                  <input
+                    type="email"
+                    placeholder="University Email"
+                    required
+                  />
+                  <input type="password" placeholder="Password" required />
+                  <input type="password" placeholder="Confirm Password" required />
+                </>
+              )}
+              <button type="submit">Register</button>
+            </form>
             <div className="login-link">
               Already have an account? <a href="#" onClick={() => openLoginPopup('student')}>Login</a>
             </div>
-            
+
           </div>
         </div>
       )}
