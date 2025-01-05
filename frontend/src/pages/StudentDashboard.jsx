@@ -70,11 +70,11 @@ const StudentDashboard = () => {
   const [activeSection, setActiveSection] = useState('Profile');
 
   const studentDetails = {
-    name: 'John Doe',
+    name: 'AMAN DEV',
     rollNumber: '123456',
     course: 'Computer Science',
     year: '3rd Year',
-    profilePicture: 'https://via.placeholder.com/150',
+    profilePicture: 'https://img.freepik.com/premium-vector/beautiful-student-girl-vector-art_795447-84.jpg?w=740',
   };
 
   const renderSection = () => {
