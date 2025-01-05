@@ -7,21 +7,14 @@ const rateLimit = require("express-rate-limit");
 const User = require("../models/User");
 const router = express.Router();
 
-// Rate limiter for login
 const loginLimiter = rateLimit({
-  windowMs: 15 * 60 * 1000, // 15 minutes
-  max: 5, // Limit each IP to 5 requests per windowMs
-  message: { error: "Too many login attempts. Please try again later." },
+  windowMs: 15 * 60 * 1000, max: 5, message: { error: "Too many login attempts. Please try again later." },
 });
 
-// Rate limiter for signup
 const signupLimiter = rateLimit({
-  windowMs: 15 * 60 * 1000, // 15 minutes
-  max: 5, // Limit each IP to 5 requests per windowMs
-  message: { error: "Too many signup attempts. Please try again later." },
+  windowMs: 15 * 60 * 1000, max: 5, message: { error: "Too many signup attempts. Please try again later." },
 });
 
-// Signup route
 router.post(
   "/signup",
   signupLimiter,
@@ -41,28 +34,22 @@ router.post(
     try {
       const { universityEmail, password, name, role = "student" } = req.body;
 
-      // Check if the user already exists
       const existingUser = await User.findOne({ universityEmail });
       if (existingUser) {
         return res.status(400).json({ error: "Email is already in use" });
       }
 
-      // Hash the password
       const hashedPassword = await bcrypt.hash(password, 10);
 
-      // Create the new user
       const newUser = new User({
         universityEmail,
         password: hashedPassword,
         name,
-        role, // Default to "student", could be "department", "university" as needed
-        status: "active", // Set status to "active" initially
+        role, status: "active",
       });
 
-      // Save the user to the database
       await newUser.save();
 
-      // Generate JWT token for the new user
       const token = jwt.sign(
         {
           id: newUser._id,
@@ -80,7 +67,6 @@ router.post(
         { expiresIn: "7d" }
       );
 
-      // Respond with the token and user info
       res.status(201).json({
         message: "Signup successful",
         token,
@@ -99,7 +85,6 @@ router.post(
   }
 );
 
-// Login route
 router.post(
   "/login",
   loginLimiter,
@@ -116,24 +101,20 @@ router.post(
     try {
       const { universityEmail, password } = req.body;
 
-      // Check if user exists
       const user = await User.findOne({ universityEmail });
       if (!user) {
         return res.status(401).json({ error: "Invalid email or password" });
       }
 
-      // Check if account is active
       if (user.status !== "active") {
         return res.status(403).json({ error: "Your account is inactive or suspended" });
       }
 
-      // Verify password
       const isPasswordValid = await bcrypt.compare(password, user.password);
       if (!isPasswordValid) {
         return res.status(401).json({ error: "Invalid email or password" });
       }
 
-      // Generate JWT tokens
       const token = jwt.sign(
         {
           id: user._id,
@@ -151,7 +132,6 @@ router.post(
         { expiresIn: "7d" }
       );
 
-      // Respond with token and user info
       res.status(200).json({
         message: "Login successful",
         token,
@@ -170,7 +150,6 @@ router.post(
   }
 );
 
-// Refresh Token Route
 router.post("/refresh-token", async (req, res) => {
   const refreshToken = req.body.refreshToken || req.cookies.refreshToken;
   if (!refreshToken) {
@@ -178,16 +157,13 @@ router.post("/refresh-token", async (req, res) => {
   }
 
   try {
-    // Verify the refresh token
     const decoded = jwt.verify(refreshToken, process.env.JWT_REFRESH_SECRET);
 
-    // Find the user by ID (based on the decoded token)
     const user = await User.findById(decoded.id);
     if (!user) {
       return res.status(401).json({ error: "User not found" });
     }
 
-    // Generate a new access token
     const newAccessToken = jwt.sign(
       {
         id: user._id,
@@ -196,8 +172,7 @@ router.post("/refresh-token", async (req, res) => {
         universityEmail: user.universityEmail,
       },
       process.env.JWT_SECRET,
-      { expiresIn: "1h" } // 1 hour expiration for access token
-    );
+      { expiresIn: "1h" });
 
     res.status(200).json({
       message: "Access token refreshed successfully",
