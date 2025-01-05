@@ -15,7 +15,7 @@ export default function AuthPopup({ showLoginPopup, showRegisterPopup, openLogin
     const [registerBranch, setRegisterBranch] = useState('');
     const navigate = useNavigate();
 
-    const { loginUser, token } = useAuth();
+    const { loginUser, token, user } = useAuth();
 
     const { postData: postLogin, loading: loginLoading, error: loginError, data: loginResponse, } = usePost('/login');
     const { postData: postSignup, loading: signupLoading, error: signupError, data: signupResponse, } = usePost('/signup');
@@ -60,9 +60,9 @@ export default function AuthPopup({ showLoginPopup, showRegisterPopup, openLogin
 
     useEffect(() => {
         if (token) {
-            navigate(`/dashboard/${loginType}`);
+            navigate(`/dashboard/${user.role}`);
         }
-    }, [token, navigate, loginType]);
+    }, [token]);
 
     return (
         <>

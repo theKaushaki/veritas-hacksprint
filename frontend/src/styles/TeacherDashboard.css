@@ -2,228 +2,349 @@
 
 /* General Dashboard Styles */
 .dashboard-container {
-    font-family: Arial, sans-serif;
-    color: #333;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 20px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    background-color: #f9f9f9;
-  }
-  
-  .dashboard-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 20px;
-  }
-  
-  .dashboard-header h1 {
-    font-size: 24px;
-    color: #2c3e50;
-  }
-  
-  .notification-button {
-    padding: 8px 16px;
-    background-color: #3498db;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-  }
-  
-  .notification-button:hover {
-    background-color: #2980b9;
-  }
-  
-  /* Navigation Styles */
-  .dashboard-nav {
-    margin-bottom: 20px;
-    border-bottom: 2px solid #ddd;
-  }
-  
-  .dashboard-nav ul {
-    display: flex;
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
-  
-  .dashboard-nav li {
-    padding: 10px 20px;
-    cursor: pointer;
-    border-bottom: 3px solid transparent;
-  }
-  
-  .dashboard-nav li.active {
-    font-weight: bold;
-    border-bottom: 3px solid #3498db;
-  }
-  
-  .dashboard-nav li:hover {
-    background-color: #eaf2f8;
-    color: var(--text-color);
-  }
-  
-  /* Content Section Styles */
-  .dashboard-content {
-    padding: 20px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    background-color: white;
-  }
-  
-  /* Profile Section Styles */
-  .profile-section {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-  }
-  
-  .profile-picture {
-    width: 120px;
-    height: 120px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 3px solid #ddd;
-  }
-  
-  .credentials h2 {
-    margin-bottom: 10px;
-    color: #2c3e50;
-  }
-  
-  .credentials p {
-    margin: 5px 0;
-  }
-  
-  /* Create Section Styles */
-  .create-section {
-    padding: 10px 0;
-  }
-  
-  .create-section h2 {
-    margin-bottom: 10px;
-    color: #2c3e50;
-  }
-  
-  .create-section .form-group {
-    margin-bottom: 15px;
-  }
-  
-  .create-section label {
-    display: block;
-    font-weight: bold;
-    margin-bottom: 5px;
-  }
-  
-  .create-section input,
-  .create-section textarea {
-    width: 100%;
-    padding: 8px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-  }
-  
-  .create-section button {
-    padding: 10px 16px;
-    background-color: #3498db;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-  }
-  
-  .create-section button:hover {
-    background-color: #2980b9;
-  }
-  
-  /* Manage Section Styles */
-  .manage-section {
-    padding: 10px 0;
-  }
-  
-  .manage-section h2 {
-    margin-bottom: 10px;
-    color: #2c3e50;
-  }
-  
-  .item-list {
-    list-style: none;
-    padding: 0;
-  }
-  
-  .item {
-    padding: 15px;
-    margin-bottom: 10px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    background-color: #f8f9fa;
-  }
-  
-  .item h3 {
-    margin-bottom: 8px;
-    color: #2c3e50;
-  }
-  
-  .item p {
-    margin: 5px 0 10px 0;
-  }
-  
-  .delete-button {
-    padding: 8px 12px;
-    background-color: #e74c3c;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-  }
-  
-  .delete-button:hover {
-    background-color: #c0392b;
-  }
-  
-  .submissions-cards {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-  }
-  
-  .submission-card {
-    background-color: #f9f9f9;
-    border-radius: 8px;
-    padding: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    width: calc(33.333% - 20px);
-    box-sizing: border-box;
-  }
-  
-  .submission-card h3 {
-    font-size: 1.2rem;
-    margin-bottom: 10px;
-  }
-  
-  .submission-item {
-    margin-bottom: 15px;
-  }
-  
-  .submission-item h4 {
-    font-size: 1rem;
-    font-weight: bold;
-  }
-  
-  .submissions-list ul {
-    list-style-type: none;
-    padding-left: 0;
-  }
-  
-  .submissions-list ul li {
-    margin-bottom: 5px;
-  }
-  
-  .submission-item p {
-    font-size: 0.9rem;
-    color: #555;
-  }
-  
+  font-family: Arial, sans-serif;
+  color: #333;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+}
+
+.dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.dashboard-header h1 {
+  font-size: 24px;
+  color: #2c3e50;
+}
+
+.notification-button {
+  padding: 8px 16px;
+  background-color: #3498db;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.notification-button:hover {
+  background-color: #2980b9;
+}
+
+/* Navigation Styles */
+.dashboard-nav {
+  margin-bottom: 20px;
+  border-bottom: 2px solid #ddd;
+}
+
+.dashboard-nav ul {
+  display: flex;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.dashboard-nav li {
+  padding: 10px 20px;
+  cursor: pointer;
+  border-bottom: 3px solid transparent;
+}
+
+.dashboard-nav li.active {
+  font-weight: bold;
+  border-bottom: 3px solid #3498db;
+}
+
+.dashboard-nav li:hover {
+  background-color: #eaf2f8;
+  color: var(--text-color);
+}
+
+/* Content Section Styles */
+.dashboard-content {
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: white;
+}
+
+/* Profile Section Styles */
+.profile-section {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.profile-picture {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid #ddd;
+}
+
+.credentials h2 {
+  margin-bottom: 10px;
+  color: #2c3e50;
+}
+
+.credentials p {
+  margin: 5px 0;
+}
+
+/* Create Section Styles */
+.create-section {
+  padding: 10px 0;
+}
+
+.create-section h2 {
+  margin-bottom: 10px;
+  color: #2c3e50;
+}
+
+.create-section .form-group {
+  margin-bottom: 15px;
+}
+
+.create-section label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.create-section input,
+.create-section textarea {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.create-section button {
+  padding: 10px 16px;
+  background-color: #3498db;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.create-section button:hover {
+  background-color: #2980b9;
+}
+
+/* Manage Section Styles */
+.manage-section {
+  padding: 10px 0;
+}
+
+.manage-section h2 {
+  margin-bottom: 10px;
+  color: #2c3e50;
+}
+
+.item-list {
+  list-style: none;
+  padding: 0;
+}
+
+.item {
+  padding: 15px;
+  margin-bottom: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background-color: #f8f9fa;
+}
+
+.item h3 {
+  margin-bottom: 8px;
+  color: #2c3e50;
+}
+
+.item p {
+  margin: 5px 0 10px 0;
+}
+
+.delete-button {
+  padding: 8px 12px;
+  background-color: #e74c3c;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.delete-button:hover {
+  background-color: #c0392b;
+}
+
+.submissions-cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.submission-card {
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: calc(33.333% - 20px);
+  box-sizing: border-box;
+}
+
+.submission-card h3 {
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+}
+
+.submission-item {
+  margin-bottom: 15px;
+}
+
+.submission-item h4 {
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+.submissions-list ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.submissions-page {
+  font-family: Arial, sans-serif;
+  margin: 20px;
+}
+
+h2 {
+  font-size: 1.8em;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.submissions-and-preview {
+  display: flex;
+  gap: 20px;
+}
+
+.submissions-list {
+  flex: 1;
+  padding: 0;
+  margin: 0;
+}
+
+.submissions-list .procedure-item {
+  margin-bottom: 20px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+}
+
+.submissions-list .procedure-item h3 {
+  font-size: 1.5em;
+  color: #444;
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+.submissions-list ul {
+  list-style-type: none;
+  padding-left: 20px;
+}
+
+.submissions-list ul li {
+  font-size: 1.1em;
+  padding: 5px 0;
+  margin-left: 20px;
+}
+
+.submissions-list ul li .student-name {
+  font-weight: normal;
+  color: #333;
+}
+
+.submissions-list ul li .submission-count {
+  font-weight: bold;
+  color: #2196F3;
+  margin-left: 10px;
+}
+
+.submission {
+  cursor: pointer;
+  padding: 5px;
+  background-color: white;
+  transition: background-color 0.3s ease;
+}
+
+.submission:hover {
+  background-color: #f0f0f0;
+}
+
+.response-details {
+  flex: 1;
+  margin-top: 30px;
+  padding: 25px;
+  background-color: #f4f4f9;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.response-details h3 {
+  font-size: 1.8em;
+  color: #333;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.response-details p {
+  font-size: 1.2em;
+  margin: 10px 0;
+  color: #555;
+}
+
+.response-details p strong {
+  color: #333;
+}
+
+.response-details ul {
+  padding-left: 20px;
+  list-style: none;
+  margin-top: 15px;
+}
+
+.response-details ul li {
+  font-size: 1.1em;
+  margin: 10px 0;
+  background-color: #ffffff;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  transition: background-color 0.3s ease;
+}
+
+.response-details ul li:hover {
+  background-color: #f9f9f9;
+}
+
+.response-details ul li .field-name {
+  font-weight: bold;
+  color: #333;
+}
+
+.response-details ul li .field-value {
+  font-size: 1.1em;
+  color: #777;
+  margin-top: 5px;
+}

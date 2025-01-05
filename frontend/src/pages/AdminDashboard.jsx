@@ -45,6 +45,13 @@ const AdminDashboard = () => {
       }}>
         Create New Form
       </button>
+      <button onClick={()=>{
+        localStorage.removeItem('user');
+        localStorage.removeItem('token');
+        navigate('/');
+      }}>
+        logout
+      </button>
       <div className="form-list">
         {forms.map((form) => (
           <div key={form.id} className="form-item">

@@ -29,9 +29,9 @@ export default function AllRoutes() {
                 </PrivateRoute>
             } />
             <Route path='form/create' role='faculty' element={
-                <PrivateRoute>
+                // <PrivateRoute>
                     <Formbuilder />
-                </PrivateRoute>
+                // </PrivateRoute>
             } />
         </Routes>
     )

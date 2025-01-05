@@ -9,7 +9,7 @@ const getSubmissions = async (req, res) => {
         if (user.role != roles.DEPARTMENT) {
             return res.status(401).json({ message: 'You are not authorized to access this page' });
         }
-        const submissions = await submissionModel.find();
+        const submissions = await submissionModel.find({ }).populate('procedureId').populate('studentId');
         return res.status(200).json(submissions);
     } catch (error) {
         console.error(error);

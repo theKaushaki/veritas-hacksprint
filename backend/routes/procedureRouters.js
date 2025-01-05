@@ -2,6 +2,7 @@ const router = require('express').Router();
 const procedureModel = require('../models/procedureModel');
 const submissionModel = require('../models/submissionModel');
 const { userRoles } = require('../models/userModel');
+const notification = require('../utils/notification');
 // const notification = require('../utils/notification');
 
 const procedureController = {
@@ -82,6 +83,8 @@ const procedureController = {
                 return res.status(404).json({ message: 'Procedure not found' });
 
             submissionModel.create({ procedureId: req.params.id, responses, studentId: user.id });
+            notification
+                .appendNotification(user._id, `Student ${user.id} submitted form ${req.params.id}`, 'department');
 
             res.status(201).json({ message: 'Procedure applied successfully' });
 

@@ -100,18 +100,18 @@ const FormsPage = () => {
 
 // ProfilePage Component
 const ProfilePage = ({ studentDetails }) => {
+  const { logoutUser, user } = useAuth()
+
   return (
     <div className="profile-section">
       <img
         src={studentDetails.profilePicture}
-        alt={`${studentDetails.name}'s profile`}
+        alt={`${user?.name}'s profile`}
         className="profile-picture"
       />
       <div className="credentials">
-        <h2>{studentDetails.name}</h2>
-        <p><strong>Roll Number:</strong> {studentDetails.rollNumber}</p>
-        <p><strong>Course:</strong> {studentDetails.course}</p>
-        <p><strong>Year:</strong> {studentDetails.year}</p>
+        <h2>{user.name}</h2>
+        <p><strong>Roll Number:</strong> {user.id}</p>
       </div>
     </div>
   );
