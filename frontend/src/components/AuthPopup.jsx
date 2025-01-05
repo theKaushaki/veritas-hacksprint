@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import usePost from '../customHooks/usePost';
 import { useAuth } from '../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
@@ -15,10 +15,11 @@ export default function AuthPopup({ showLoginPopup, showRegisterPopup, openLogin
     const [registerBranch, setRegisterBranch] = useState('');
     const navigate = useNavigate();
 
-    const { loginUser } = useAuth();
+    const { loginUser, token } = useAuth();
 
     const { postData: postLogin, loading: loginLoading, error: loginError, data: loginResponse, } = usePost('/login');
     const { postData: postSignup, loading: signupLoading, error: signupError, data: signupResponse, } = usePost('/signup');
+
     const handleLogin = async (e) => {
         e.preventDefault();
         const payload = {
@@ -27,11 +28,6 @@ export default function AuthPopup({ showLoginPopup, showRegisterPopup, openLogin
         };
 
         await postLogin(payload);
-        if (loginResponse?.token) {
-            loginUser(loginResponse.user, loginResponse.token);
-            console.log(loginResponse);
-            navigate(`/dashboard/${loginType}`);
-        }
     };
 
     const handleSignup = async (e) => {
@@ -49,12 +45,24 @@ export default function AuthPopup({ showLoginPopup, showRegisterPopup, openLogin
         };
 
         await postSignup(payload);
+    };
 
-        if (signupResponse) {
+    useEffect(() => {
+        if (loginResponse && loginResponse.token) {
+            loginUser(loginResponse.user, loginResponse.token);
+            navigate(`/dashboard/${loginType}`);
+        }
+        if (signupResponse && signupResponse.token) {
             loginUser(signupResponse.user, signupResponse.token);
             openLoginPopup(registerType);
         }
-    };
+    }, [loginResponse, signupResponse, loginUser, navigate, openLoginPopup, loginType, registerType]);
+
+    useEffect(() => {
+        if (token) {
+            navigate(`/dashboard/${loginType}`);
+        }
+    }, [token, navigate, loginType]);
 
     return (
         <>

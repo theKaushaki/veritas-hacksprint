@@ -1,46 +1,98 @@
-import React, { useState } from 'react';
-// import './StudentDashboard.css';
+import React, { useEffect, useState } from 'react';
+import '../styles/StudentDashboard.css';
+import { useAuth } from '../context/AuthContext';
+import useFetch from '../customHooks/useFetch';
+import usePost from '../customHooks/usePost';
 
 // FormsPage Component
 const FormsPage = () => {
   const [selectedForm, setSelectedForm] = useState(null);
-
-  const formsList = [
-    { id: 1, title: 'Feedback Form', url: 'https://forms.gle/example1' },
-    { id: 2, title: 'Course Registration', url: 'https://forms.gle/example2' },
-    { id: 3, title: 'Event Participation', url: 'https://forms.gle/example3' },
-  ];
+  const { data: formData, loading: formLoading, error: formError } = useFetch('/procedures/all');
+  const [responses, setResponses] = useState({});
+  const { data, error, loading, postData } = usePost(`/procedures/${selectedForm?._id}/apply`);
 
   const handleFormClick = (form) => {
-    if (selectedForm && selectedForm.id === form.id) {
-      setSelectedForm(null); // Close the form if clicked twice
+    if (selectedForm && selectedForm._id === form._id) {
+      setSelectedForm(null);
     } else {
-      setSelectedForm(form); // Open the selected form
+      setSelectedForm(form);
+    }
+  };
+
+  const handleInputChange = (fieldId, value) => {
+    setResponses({
+      ...responses,
+      [fieldId]: value,
+    });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const payload = {
+      responses: Object.keys(responses).map((key) => ({
+        id: key,
+        value: responses[key],
+      })),
+    };
+
+    try {
+      await postData(payload);
+      toast.success("Form submitted successfully!");
+    } catch (error) {
+      toast.error("Failed to submit form!");
     }
   };
 
   return (
     <div className="forms-page">
       <h2>Available Forms</h2>
+
       <ul className="forms-list">
-        {formsList.map((form) => (
-          <li
-            key={form.id}
-            className="form-item"
-            onClick={() => handleFormClick(form)}
-          >
-            {form.title}
-          </li>
-        ))}
+        {formData?.length > 0 ? (
+          formData.map((form) => (
+            <li
+              key={form._id}
+              className="form-item"
+              onClick={() => handleFormClick(form)}
+            >
+              {form.title}
+            </li>
+          ))
+        ) : (
+          <p>No forms available.</p>
+        )}
       </ul>
 
       {selectedForm && (
-        <div className="form-container">
+        <form onSubmit={handleSubmit} className="form-container">
           <h2>{selectedForm.title}</h2>
-          <p>
-            Open the form here: <a href={selectedForm.url} target="_blank" rel="noopener noreferrer">Click here</a>
-          </p>
-        </div>
+          <p><strong>Description:</strong> {selectedForm.description}</p>
+
+          <h3>Form Fields</h3>
+          <ul className="form-fields" style={{ listStyleType: 'none' }}>
+            {selectedForm.formFields.map((field) => (
+              <li key={field._id} className="form-field">
+                <label htmlFor={field._id} className="field-label">{field.value}</label>
+                <input
+                  id={field._id}
+                  type={field.fieldType}
+                  placeholder={field.fieldName}
+                  value={responses[field._id] || ""}
+                  onChange={(e) => handleInputChange(field._id, e.target.value)}
+                  className="field-input"
+                />
+              </li>
+            ))}
+          </ul>
+
+          <button className="submit-btn" type="submit" disabled={loading}>
+            {loading ? "Submitting..." : "Submit"}
+          </button>
+
+          <h3>Deadline</h3>
+          <p>{new Date(selectedForm.deadline).toLocaleDateString()}</p>
+        </form>
       )}
     </div>
   );
@@ -68,6 +120,7 @@ const ProfilePage = ({ studentDetails }) => {
 // Main StudentDashboard Component
 const StudentDashboard = () => {
   const [activeSection, setActiveSection] = useState('Profile');
+  const { logoutUser } = useAuth()
 
   const studentDetails = {
     name: 'AMAN DEV',
@@ -113,12 +166,12 @@ const StudentDashboard = () => {
             Track
           </li>
         </ul>
-        {/* Add the Notification Button */}
+
         <button
           className="notification-button"
-          onClick={() => window.open('https://mail.google.com', '_blank')}
+          onClick={() => logoutUser()}
         >
-          Notifications
+          Logout
         </button>
       </nav>
       <div className="dashboard-content">{renderSection()}</div>

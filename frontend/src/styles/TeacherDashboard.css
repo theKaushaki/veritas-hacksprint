@@ -63,6 +63,7 @@
   
   .dashboard-nav li:hover {
     background-color: #eaf2f8;
+    color: var(--text-color);
   }
   
   /* Content Section Styles */

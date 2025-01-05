@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './TeacherDashboard.css';
+import '../styles/TeacherDashboard.css';
 
 // ProfileSection Component
 const ProfileSection = ({ teacherDetails }) => {
