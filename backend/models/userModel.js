@@ -1,14 +1,14 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 
-// Define constants for the user roles
+
 const roles = {
   STUDENT: 'student',
   DEPARTMENT: 'department',
   UNIVERSITY: 'university',
 };
 
-// User Schema
+
 const userSchema = new mongoose.Schema(
   {
     name: {
@@ -23,7 +23,7 @@ const userSchema = new mongoose.Schema(
       lowercase: true,
       validate: {
         validator: function (v) {
-          return /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(v); // simple email validation regex
+          return /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(v);
         },
         message: (props) => `${props.value} is not a valid email!`,
       },
@@ -37,25 +37,25 @@ const userSchema = new mongoose.Schema(
       type: String,
       required: true,
       enum: Object.values(roles),
-      default: roles.STUDENT, // Default role is student
+      default: roles.STUDENT,
     },
     branch: {
       type: String,
       required: function () {
-        return this.role === roles.STUDENT; // Only students have a branch
+        return this.role === roles.STUDENT;
       },
     },
     universityEmail: {
       type: String,
       required: function () {
-        return this.role === roles.DEPARTMENT || this.role === roles.UNIVERSITY; // Only departments and universities need a university email
+        return this.role === roles.DEPARTMENT || this.role === roles.UNIVERSITY;
       },
       lowercase: true,
     },
     department: {
       type: String,
       required: function () {
-        return this.role === roles.DEPARTMENT; // Only departments have a department field
+        return this.role === roles.DEPARTMENT;
       },
     },
     forms: [
@@ -63,14 +63,14 @@ const userSchema = new mongoose.Schema(
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Form',
       },
-    ], // A list of forms that the user has interacted with
+    ],
   },
   {
-    timestamps: true, // Automatically tracks createdAt and updatedAt fields
+    timestamps: true,
   }
 );
 
-// Hash password before saving the user
+
 userSchema.pre('save', async function (next) {
   if (this.isModified('password')) {
     try {
@@ -83,7 +83,7 @@ userSchema.pre('save', async function (next) {
   next();
 });
 
-// Method to compare passwords (for login)
+
 userSchema.methods.comparePassword = async function (candidatePassword) {
   try {
     return await bcrypt.compare(candidatePassword, this.password);
@@ -92,23 +92,23 @@ userSchema.methods.comparePassword = async function (candidatePassword) {
   }
 };
 
-// Static method to get all students, departments, or university-level users
+
 userSchema.statics.getUsersByRole = async function (role) {
   return this.find({ role });
 };
 
-// Static method to find user by email (useful for login or admin functionalities)
+
 userSchema.statics.findByEmail = async function (email) {
   return this.findOne({ email });
 };
 
-// Method to update user profile information (used by users or admin)
+
 userSchema.methods.updateProfile = async function (updates) {
   Object.assign(this, updates);
   await this.save();
 };
 
-// Create and export the User model
+
 const User = mongoose.model('User', userSchema);
 
-module.exports = { User, roles };
+module.exports = { User, roles, userRoles: roles };
